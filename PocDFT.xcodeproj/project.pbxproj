@@ -45,6 +45,8 @@
 		CCF2F5BB26C16B0E00DEA781 /* PocDFTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocDFTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF2F5BF26C16B0E00DEA781 /* PocDFTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocDFTUITests.swift; sourceTree = "<group>"; };
 		CCF2F5C126C16B0E00DEA781 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCF2F5CD26C16B2900DEA781 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CCF2F5CF26C17BB600DEA781 /* AppDependencies */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppDependencies; path = ../AppDependencies; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,9 @@
 		CCF2F59626C16B0800DEA781 = {
 			isa = PBXGroup;
 			children = (
+				CCF2F5CF26C17BB600DEA781 /* AppDependencies */,
+				CCF2F5CE26C16B6500DEA781 /* ReadMeImages */,
+				CCF2F5CD26C16B2900DEA781 /* README.md */,
 				CCF2F5A126C16B0800DEA781 /* PocDFT */,
 				CCF2F5B326C16B0E00DEA781 /* PocDFTTests */,
 				CCF2F5BE26C16B0E00DEA781 /* PocDFTUITests */,
@@ -128,6 +133,13 @@
 				CCF2F5C126C16B0E00DEA781 /* Info.plist */,
 			);
 			path = PocDFTUITests;
+			sourceTree = "<group>";
+		};
+		CCF2F5CE26C16B6500DEA781 /* ReadMeImages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ReadMeImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
