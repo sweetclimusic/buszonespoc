@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,11 @@
 		CCF2F5AA26C16B0D00DEA781 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5A926C16B0D00DEA781 /* Preview Assets.xcassets */; };
 		CCF2F5B526C16B0E00DEA781 /* PocDFTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5B426C16B0E00DEA781 /* PocDFTTests.swift */; };
 		CCF2F5C026C16B0E00DEA781 /* PocDFTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5BF26C16B0E00DEA781 /* PocDFTUITests.swift */; };
+		CCF2F5D626C3E52500DEA781 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = CCF2F5D526C3E52500DEA781 /* XMLCoder */; };
+		CCF2F5D926C3EB2F00DEA781 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5D826C3EB2F00DEA781 /* Types.swift */; };
+		CCF2F5DB26C4238300DEA781 /* periodGeoZone.xml in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5DA26C4238300DEA781 /* periodGeoZone.xml */; };
+		CCF2F5DC26C4238300DEA781 /* periodGeoZone.xml in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5DA26C4238300DEA781 /* periodGeoZone.xml */; };
+		CCF2F5DF26C5297C00DEA781 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +51,8 @@
 		CCF2F5BF26C16B0E00DEA781 /* PocDFTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocDFTUITests.swift; sourceTree = "<group>"; };
 		CCF2F5C126C16B0E00DEA781 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF2F5CD26C16B2900DEA781 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CCF2F5CF26C17BB600DEA781 /* AppDependencies */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppDependencies; path = ../AppDependencies; sourceTree = "<group>"; };
+		CCF2F5D826C3EB2F00DEA781 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		CCF2F5DA26C4238300DEA781 /* periodGeoZone.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = periodGeoZone.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF2F5D626C3E52500DEA781 /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF2F5DF26C5297C00DEA781 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +85,7 @@
 		CCF2F59626C16B0800DEA781 = {
 			isa = PBXGroup;
 			children = (
-				CCF2F5CF26C17BB600DEA781 /* AppDependencies */,
+				CCF2F5DA26C4238300DEA781 /* periodGeoZone.xml */,
 				CCF2F5CE26C16B6500DEA781 /* ReadMeImages */,
 				CCF2F5CD26C16B2900DEA781 /* README.md */,
 				CCF2F5A126C16B0800DEA781 /* PocDFT */,
@@ -100,6 +108,7 @@
 		CCF2F5A126C16B0800DEA781 /* PocDFT */ = {
 			isa = PBXGroup;
 			children = (
+				CCF2F5D726C3EB1B00DEA781 /* Models */,
 				CCF2F5A226C16B0800DEA781 /* PocDFTApp.swift */,
 				CCF2F5A426C16B0800DEA781 /* ContentView.swift */,
 				CCF2F5A626C16B0D00DEA781 /* Assets.xcassets */,
@@ -142,6 +151,14 @@
 			path = ReadMeImages;
 			sourceTree = "<group>";
 		};
+		CCF2F5D726C3EB1B00DEA781 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CCF2F5D826C3EB2F00DEA781 /* Types.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,6 +175,9 @@
 			dependencies = (
 			);
 			name = PocDFT;
+			packageProductDependencies = (
+				CCF2F5D526C3E52500DEA781 /* XMLCoder */,
+			);
 			productName = PocDFT;
 			productReference = CCF2F59F26C16B0800DEA781 /* PocDFT.app */;
 			productType = "com.apple.product-type.application";
@@ -176,6 +196,9 @@
 				CCF2F5B226C16B0E00DEA781 /* PBXTargetDependency */,
 			);
 			name = PocDFTTests;
+			packageProductDependencies = (
+				CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */,
+			);
 			productName = PocDFTTests;
 			productReference = CCF2F5B026C16B0E00DEA781 /* PocDFTTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -229,6 +252,10 @@
 				Base,
 			);
 			mainGroup = CCF2F59626C16B0800DEA781;
+			packageReferences = (
+				CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */,
+				CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = CCF2F5A026C16B0800DEA781 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -246,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCF2F5AA26C16B0D00DEA781 /* Preview Assets.xcassets in Resources */,
+				CCF2F5DB26C4238300DEA781 /* periodGeoZone.xml in Resources */,
 				CCF2F5A726C16B0D00DEA781 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF2F5DC26C4238300DEA781 /* periodGeoZone.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF2F5D926C3EB2F00DEA781 /* Types.swift in Sources */,
 				CCF2F5A526C16B0800DEA781 /* ContentView.swift in Sources */,
 				CCF2F5A326C16B0800DEA781 /* PocDFTApp.swift in Sources */,
 			);
@@ -592,6 +622,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:MaxDesiatov/XMLCoder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.13.0;
+			};
+		};
+		CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CCF2F5D526C3E52500DEA781 /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+		CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CCF2F59726C16B0800DEA781 /* Project object */;
 }

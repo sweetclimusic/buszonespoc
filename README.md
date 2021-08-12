@@ -31,3 +31,23 @@ So that I can view their time table
 [XMLCoder Documentation](https://maxdesiatov.github.io/XMLCoder/ "Documation for XMLCoder")
 [git@github.com:MaxDesiatov/XMLCoder.git Version: 0.13.0](https://github.com/MaxDesiatov/XMLCoder "xmlcoder github project source code) 
 [git@github.com/pointfreeco/swift-snapshot-testing.git Version: 1.8.1](https://github.com/pointfreeco/swift-snapshot-testing "Swift Snapshot testing github project source code")
+
+
+## Bus NAPTan for West Yorkshire, North,South Yorkshire and York
+https://naptan.app.dft.gov.uk/DataRequest/Naptan.ashx?format=xml&LA=450|320|370|329
+
+Bus Atos saved in CoreData app searches against it's internal DB for bus stops.
+
+
+### Data Models
+
+Fairtype, Bus Route
+
+- Fair Stages each stage has multiple bustop.
+- Each fair stage shows cost from 1 stage to the next
+    - This will be the price band
+
+GeoZoneTicket = PeriodGeoZoneTicket | MultiOperatorGeoZoneTicket
+
+create a Modal of a BaseTicket
+
