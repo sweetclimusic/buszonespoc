@@ -15,9 +15,11 @@
 		CCF2F5C026C16B0E00DEA781 /* PocDFTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5BF26C16B0E00DEA781 /* PocDFTUITests.swift */; };
 		CCF2F5D626C3E52500DEA781 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = CCF2F5D526C3E52500DEA781 /* XMLCoder */; };
 		CCF2F5D926C3EB2F00DEA781 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5D826C3EB2F00DEA781 /* Types.swift */; };
-		CCF2F5DB26C4238300DEA781 /* periodGeoZone.xml in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5DA26C4238300DEA781 /* periodGeoZone.xml */; };
-		CCF2F5DC26C4238300DEA781 /* periodGeoZone.xml in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5DA26C4238300DEA781 /* periodGeoZone.xml */; };
-		CCF2F5DF26C5297C00DEA781 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */; };
+		CCF2F5DF26C5297C00DEA781 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */; settings = {ATTRIBUTES = (Required, ); }; };
+		CCF2F5E226C5337000DEA781 /* Types+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5E126C5337000DEA781 /* Types+TestHelpers.swift */; };
+		CCF2F5E526C5347300DEA781 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = CCF2F5E426C5347300DEA781 /* XMLCoder */; settings = {ATTRIBUTES = (Weak, ); }; };
+		CCF2F5E826C5534200DEA781 /* data in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5E726C5534200DEA781 /* data */; };
+		CCF2F5E926C5534200DEA781 /* data in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5E726C5534200DEA781 /* data */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +54,8 @@
 		CCF2F5C126C16B0E00DEA781 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF2F5CD26C16B2900DEA781 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CCF2F5D826C3EB2F00DEA781 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
-		CCF2F5DA26C4238300DEA781 /* periodGeoZone.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = periodGeoZone.xml; sourceTree = "<group>"; };
+		CCF2F5E126C5337000DEA781 /* Types+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Types+TestHelpers.swift"; sourceTree = "<group>"; };
+		CCF2F5E726C5534200DEA781 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF2F5E526C5347300DEA781 /* XMLCoder in Frameworks */,
 				CCF2F5DF26C5297C00DEA781 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,13 +89,14 @@
 		CCF2F59626C16B0800DEA781 = {
 			isa = PBXGroup;
 			children = (
-				CCF2F5DA26C4238300DEA781 /* periodGeoZone.xml */,
+				CCF2F5E726C5534200DEA781 /* data */,
 				CCF2F5CE26C16B6500DEA781 /* ReadMeImages */,
 				CCF2F5CD26C16B2900DEA781 /* README.md */,
 				CCF2F5A126C16B0800DEA781 /* PocDFT */,
 				CCF2F5B326C16B0E00DEA781 /* PocDFTTests */,
 				CCF2F5BE26C16B0E00DEA781 /* PocDFTUITests */,
 				CCF2F5A026C16B0800DEA781 /* Products */,
+				CCF2F5E326C5347300DEA781 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +134,7 @@
 		CCF2F5B326C16B0E00DEA781 /* PocDFTTests */ = {
 			isa = PBXGroup;
 			children = (
+				CCF2F5E026C5333900DEA781 /* Types */,
 				CCF2F5B426C16B0E00DEA781 /* PocDFTTests.swift */,
 				CCF2F5B626C16B0E00DEA781 /* Info.plist */,
 			);
@@ -157,6 +163,21 @@
 				CCF2F5D826C3EB2F00DEA781 /* Types.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CCF2F5E026C5333900DEA781 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				CCF2F5E126C5337000DEA781 /* Types+TestHelpers.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		CCF2F5E326C5347300DEA781 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +219,7 @@
 			name = PocDFTTests;
 			packageProductDependencies = (
 				CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */,
+				CCF2F5E426C5347300DEA781 /* XMLCoder */,
 			);
 			productName = PocDFTTests;
 			productReference = CCF2F5B026C16B0E00DEA781 /* PocDFTTests.xctest */;
@@ -272,8 +294,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF2F5E826C5534200DEA781 /* data in Resources */,
 				CCF2F5AA26C16B0D00DEA781 /* Preview Assets.xcassets in Resources */,
-				CCF2F5DB26C4238300DEA781 /* periodGeoZone.xml in Resources */,
 				CCF2F5A726C16B0D00DEA781 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF2F5DC26C4238300DEA781 /* periodGeoZone.xml in Resources */,
+				CCF2F5E926C5534200DEA781 /* data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCF2F5B526C16B0E00DEA781 /* PocDFTTests.swift in Sources */,
+				CCF2F5E226C5337000DEA781 /* Types+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +483,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PocDFT/Preview Content\"";
 				DEVELOPMENT_TEAM = THMZRMRZ9S;
 				ENABLE_PREVIEWS = YES;
@@ -482,6 +506,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PocDFT/Preview Content\"";
 				DEVELOPMENT_TEAM = THMZRMRZ9S;
 				ENABLE_PREVIEWS = YES;
@@ -652,6 +677,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
+		};
+		CCF2F5E426C5347300DEA781 /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

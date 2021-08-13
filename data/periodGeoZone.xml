@@ -1,148 +1,148 @@
-<PublicationDelivery xmlns="http://www.netex.org.uk/netex" xmlns:siri="http://www.siri.org.uk/siri" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:schemaLocation="http://www.netex.org.uk/netex http://netex.uk/netex/schema/1.10/xsd/NeTEx_publication.xsd">
-    <PublicationTimestamp>2021-07-08T14:03:29.685Z</PublicationTimestamp>
-    <ParticipantRef>SYS001</ParticipantRef>
-    <PublicationRequest version="1.0">
-        <RequestTimestamp>2021-07-08T14:03:29.685Z</RequestTimestamp>
-        <ParticipantRef>SYS002</ParticipantRef>
-        <Description>Request for BLAC bus pass fares</Description>
-        <topics>
-            <NetworkFrameTopic>
-                <selectionValidityConditions>
-                    <AvailabilityCondition version="any" id="r1">
-                        <FromDate>2017-01-01T00:00:00Z</FromDate>
-                    </AvailabilityCondition>
-                </selectionValidityConditions>
-                <TypeOfFrameRef version="fxc:v1.0" ref="fxc:UK:DFT:TypeOfFrame_UK_PI_NETWORK_FARE_OFFER:FXCP"/>
-                <NetworkFilterByValue>
-                    <objectReferences>
-                        <OperatorRef version="1.0" ref="noc:BLAC">noc:135742</OperatorRef>
-                        <TypeOfFareProductRef version="fxc:v1.0" ref="fxc:standard_product@pass@period"/>
-                        <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_1_adult"/>
-                        <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_2_adult"/>
-                        <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_3_adult"/>
-                        <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_4_adult"/>
-                        <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_5_adult"/>
-                        <BrandingRef version="1.0" ref="op:BLAC@brand"/>
-                    </objectReferences>
-                </NetworkFilterByValue>
-            </NetworkFrameTopic>
-        </topics>
-        <RequestPolicy>
-            <RequestDetail>AllWithXref</RequestDetail>
-        </RequestPolicy>
-    </PublicationRequest>
-    <dataObjects>
-        <CompositeFrame version="1.0" id="epd:UK:BLAC:CompositeFrame_UK_PI_NETWORK_FARE_OFFER:Pass@BLAC_products:op" dataSourceRef="op:src" responsibilitySetRef="op:tariffs">
-            <Name>Fares for Blackpool Transport</Name>
-            <Description>Period ticket for Blackpool Transport</Description>
-            <TypeOfFrameRef version="fxc:v1.0" ref="fxc:UK:DFT:TypeOfFrame_UK_PI_LINE_FARE_OFFER:FXCP"/>
-            <codespaces>
-                <CodespaceRef ref="epd_data"/>
-                <CodespaceRef ref="fxc_metadata"/>
-                <CodespaceRef ref="naptStop_data"/>
-                <CodespaceRef ref="nptgLocality_data"/>
-                <CodespaceRef ref="noc_data"/>
-                <CodespaceRef ref="op_data"/>
-            </codespaces>
-            <FrameDefaults>
-                <DefaultCodespaceRef ref="op_data"/>
-                <DefaultDataSourceRef version="1.0" ref="op:src"/>
-                <DefaultResponsibilitySetRef version="1.0" ref="op:tariffs"/>
-                <DefaultCurrency>GBP</DefaultCurrency>
-            </FrameDefaults>
-            <prerequisites>
-                <CompositeFrameRef version="fxc:v1.0" ref="fxc:UK:DFT:TypeOfFrame_UK_PI_METADATA_OFFER:FXCP:fxc"/>
-            </prerequisites>
-            <frames>
-                <ResourceFrame version="1.0" id="epd:UK:BLAC:ResourceFrame_UK_PI_COMMON:BLAC:op" dataSourceRef="op:src" responsibilitySetRef="op:network_data">
-                    <Name>Operator specific common resources</Name>
-                    <TypeOfFrameRef ref="fxc:UK:DFT:TypeOfFrame_UK_PI_COMMON:FXCP" version="fxc:v1.0"/>
-                    <codespaces>
-                        <Codespace id="op_data">
-                            <Xmlns>op</Xmlns>
-                            <XmlnsUrl>http://www.blackpooltransport.com</XmlnsUrl>
-                            <Description>Operator data</Description>
-                        </Codespace>
-                    </codespaces>
-                    <FrameDefaults>
-                        <DefaultCodespaceRef ref="op_data"/>
-                        <DefaultResponsibilitySetRef version="1.0" ref="op:network_data"/>
-                        <DefaultCurrency>GBP</DefaultCurrency>
-                    </FrameDefaults>
-                    <dataSources>
-                        <DataSource id="op:src" version="1.0">
-                            <Email>enquiries@blackpooltransport.com</Email>
-                        </DataSource>
-                    </dataSources>
-                    <responsibilitySets>
-                        <ResponsibilitySet version="1.0" id="op:tariffs">
-                            <Name>Operator Tariffs</Name>
-                            <roles>
-                                <ResponsibilityRoleAssignment version="1.0" id="op:tariff_data@creates">
-                                    <DataRoleType>creates</DataRoleType>
-                                    <StakeholderRoleType>FareManagement</StakeholderRoleType>
-                                    <ResponsibleOrganisationRef ref="noc:BLAC" version="1.0">Blackpool Transport</ResponsibleOrganisationRef>
-                                </ResponsibilityRoleAssignment>
-                            </roles>
-                        </ResponsibilitySet>
-                        <ResponsibilitySet version="1.0" id="op:network_data">
-                            <Name>Operator Network data</Name>
-                            <roles>
-                                <ResponsibilityRoleAssignment version="1.0" id="op:network_data@creates">
-                                    <DataRoleType>creates</DataRoleType>
-                                    <StakeholderRoleType>Planning</StakeholderRoleType>
-                                    <ResponsibleOrganisationRef ref="noc:BLAC" version="1.0">Blackpool Transport</ResponsibleOrganisationRef>
-                                </ResponsibilityRoleAssignment>
-                            </roles>
-                        </ResponsibilitySet>
-                    </responsibilitySets>
-                    <typesOfValue>
-                        <ValueSet version="1.0" id="op:Branding" classOfValues="Branding">
-                            <Name>Operator Branding</Name>
-                            <values>
-                                <Branding version="1.0" id="op:BLAC@brand">
-                                    <Name>Blackpool Transport</Name>
-                                    <Url>http://www.blackpooltransport.com</Url>
-                                </Branding>
-                            </values>
-                        </ValueSet>
-                    </typesOfValue>
-                    <organisations>
-                        <Operator version="1.0" id="noc:BLAC">
-                            <PublicCode>BLAC</PublicCode>
-                            <Name>Blackpool Transport</Name>
-                            <ShortName>Blackpool Transport</ShortName>
-                            <TradingName>Blackpool Transport Services Ltd</TradingName>
-                            <ContactDetails>
-                                <Phone>01253 473001</Phone>
-                                <Url>http://www.blackpooltransport.com</Url>
-                            </ContactDetails>
-                            <OrganisationType>operator</OrganisationType>
-                            <Address>
-                                <Street>Rigby Road, Blackpool FY1 5DD</Street>
-                            </Address>
-                            <PrimaryMode>bus</PrimaryMode>
-                            <CustomerServiceContactDetails>
+    <PublicationDelivery xmlns="http://www.netex.org.uk/netex" xmlns:siri="http://www.siri.org.uk/siri" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:schemaLocation="http://www.netex.org.uk/netex http://netex.uk/netex/schema/1.10/xsd/NeTEx_publication.xsd">
+        <PublicationTimestamp>2021-07-08T14:03:29.685Z</PublicationTimestamp>
+        <ParticipantRef>SYS001</ParticipantRef>
+        <PublicationRequest version="1.0">
+            <RequestTimestamp>2021-07-08T14:03:29.685Z</RequestTimestamp>
+            <ParticipantRef>SYS002</ParticipantRef>
+            <Description>Request for BLAC bus pass fares</Description>
+            <topics>
+                <NetworkFrameTopic>
+                    <selectionValidityConditions>
+                        <AvailabilityCondition version="any" id="r1">
+                            <FromDate>2017-01-01T00:00:00Z</FromDate>
+                        </AvailabilityCondition>
+                    </selectionValidityConditions>
+                    <TypeOfFrameRef version="fxc:v1.0" ref="fxc:UK:DFT:TypeOfFrame_UK_PI_NETWORK_FARE_OFFER:FXCP"/>
+                    <NetworkFilterByValue>
+                        <objectReferences>
+                            <OperatorRef version="1.0" ref="noc:BLAC">noc:135742</OperatorRef>
+                            <TypeOfFareProductRef version="fxc:v1.0" ref="fxc:standard_product@pass@period"/>
+                            <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_1_adult"/>
+                            <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_2_adult"/>
+                            <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_3_adult"/>
+                            <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_4_adult"/>
+                            <PreassignedFareProductRef version="1.0" ref="op:Pass@Product_5_adult"/>
+                            <BrandingRef version="1.0" ref="op:BLAC@brand"/>
+                        </objectReferences>
+                    </NetworkFilterByValue>
+                </NetworkFrameTopic>
+            </topics>
+            <RequestPolicy>
+                <RequestDetail>AllWithXref</RequestDetail>
+            </RequestPolicy>
+        </PublicationRequest>
+        <dataObjects>
+            <CompositeFrame version="1.0" id="epd:UK:BLAC:CompositeFrame_UK_PI_NETWORK_FARE_OFFER:Pass@BLAC_products:op" dataSourceRef="op:src" responsibilitySetRef="op:tariffs">
+                <Name>Fares for Blackpool Transport</Name>
+                <Description>Period ticket for Blackpool Transport</Description>
+                <TypeOfFrameRef version="fxc:v1.0" ref="fxc:UK:DFT:TypeOfFrame_UK_PI_LINE_FARE_OFFER:FXCP"/>
+                <codespaces>
+                    <CodespaceRef ref="epd_data"/>
+                    <CodespaceRef ref="fxc_metadata"/>
+                    <CodespaceRef ref="naptStop_data"/>
+                    <CodespaceRef ref="nptgLocality_data"/>
+                    <CodespaceRef ref="noc_data"/>
+                    <CodespaceRef ref="op_data"/>
+                </codespaces>
+                <FrameDefaults>
+                    <DefaultCodespaceRef ref="op_data"/>
+                    <DefaultDataSourceRef version="1.0" ref="op:src"/>
+                    <DefaultResponsibilitySetRef version="1.0" ref="op:tariffs"/>
+                    <DefaultCurrency>GBP</DefaultCurrency>
+                </FrameDefaults>
+                <prerequisites>
+                    <CompositeFrameRef version="fxc:v1.0" ref="fxc:UK:DFT:TypeOfFrame_UK_PI_METADATA_OFFER:FXCP:fxc"/>
+                </prerequisites>
+                <frames>
+                    <ResourceFrame version="1.0" id="epd:UK:BLAC:ResourceFrame_UK_PI_COMMON:BLAC:op" dataSourceRef="op:src" responsibilitySetRef="op:network_data">
+                        <Name>Operator specific common resources</Name>
+                        <TypeOfFrameRef ref="fxc:UK:DFT:TypeOfFrame_UK_PI_COMMON:FXCP" version="fxc:v1.0"/>
+                        <codespaces>
+                            <Codespace id="op_data">
+                                <Xmlns>op</Xmlns>
+                                <XmlnsUrl>http://www.blackpooltransport.com</XmlnsUrl>
+                                <Description>Operator data</Description>
+                            </Codespace>
+                        </codespaces>
+                        <FrameDefaults>
+                            <DefaultCodespaceRef ref="op_data"/>
+                            <DefaultResponsibilitySetRef version="1.0" ref="op:network_data"/>
+                            <DefaultCurrency>GBP</DefaultCurrency>
+                        </FrameDefaults>
+                        <dataSources>
+                            <DataSource id="op:src" version="1.0">
                                 <Email>enquiries@blackpooltransport.com</Email>
-                            </CustomerServiceContactDetails>
-                        </Operator>
-                    </organisations>
-                </ResourceFrame>
-                <FareFrame version="1.0" id="epd:UK:BLAC:FareFrame_UK_PI_FARE_NETWORK:BLAC_products@pass:op" responsibilitySetRef="op:network_data">
-                    <Name>BLAC_products Network</Name>
-                    <TypeOfFrameRef version="fxc:v1.0" ref="fxc:UK:DFT:TypeOfFrame_UK_PI_FARE_NETWORK:FXCP"/>
-                    <FrameDefaults>
-                        <DefaultResponsibilitySetRef version="1.0" ref="op:network_data"/>
-                    </FrameDefaults>
-                    <prerequisites>
-                        <ResourceFrameRef version="1.0" ref="epd:UK:BLAC:ResourceFrame_UK_PI_COMMON:BLAC:op"/>
-                    </prerequisites>
-                    <fareZones>
-                        <FareZone version="1.0" id="op:BLAC_products@Test_Town_Centre">
-                            <Name>Test Town Centre</Name>
-                            <Description>Test Town Centre BLAC_products Zone</Description>
-                            <members>
-                                <ScheduledStopPointRef versionRef="EXTERNAL" ref="naptStop:CHEPJWM">The Towers, Park Street, Macclesfield</ScheduledStopPointRef>
+                            </DataSource>
+                        </dataSources>
+                        <responsibilitySets>
+                            <ResponsibilitySet version="1.0" id="op:tariffs">
+                                <Name>Operator Tariffs</Name>
+                                <roles>
+                                    <ResponsibilityRoleAssignment version="1.0" id="op:tariff_data@creates">
+                                        <DataRoleType>creates</DataRoleType>
+                                        <StakeholderRoleType>FareManagement</StakeholderRoleType>
+                                        <ResponsibleOrganisationRef ref="noc:BLAC" version="1.0">Blackpool Transport</ResponsibleOrganisationRef>
+                                    </ResponsibilityRoleAssignment>
+                                </roles>
+                            </ResponsibilitySet>
+                            <ResponsibilitySet version="1.0" id="op:network_data">
+                                <Name>Operator Network data</Name>
+                                <roles>
+                                    <ResponsibilityRoleAssignment version="1.0" id="op:network_data@creates">
+                                        <DataRoleType>creates</DataRoleType>
+                                        <StakeholderRoleType>Planning</StakeholderRoleType>
+                                        <ResponsibleOrganisationRef ref="noc:BLAC" version="1.0">Blackpool Transport</ResponsibleOrganisationRef>
+                                    </ResponsibilityRoleAssignment>
+                                </roles>
+                            </ResponsibilitySet>
+                        </responsibilitySets>
+                        <typesOfValue>
+                            <ValueSet version="1.0" id="op:Branding" classOfValues="Branding">
+                                <Name>Operator Branding</Name>
+                                <values>
+                                    <Branding version="1.0" id="op:BLAC@brand">
+                                        <Name>Blackpool Transport</Name>
+                                        <Url>http://www.blackpooltransport.com</Url>
+                                    </Branding>
+                                </values>
+                            </ValueSet>
+                        </typesOfValue>
+                        <organisations>
+                            <Operator version="1.0" id="noc:BLAC">
+                                <PublicCode>BLAC</PublicCode>
+                                <Name>Blackpool Transport</Name>
+                                <ShortName>Blackpool Transport</ShortName>
+                                <TradingName>Blackpool Transport Services Ltd</TradingName>
+                                <ContactDetails>
+                                    <Phone>01253 473001</Phone>
+                                    <Url>http://www.blackpooltransport.com</Url>
+                                </ContactDetails>
+                                <OrganisationType>operator</OrganisationType>
+                                <Address>
+                                    <Street>Rigby Road, Blackpool FY1 5DD</Street>
+                                </Address>
+                                <PrimaryMode>bus</PrimaryMode>
+                                <CustomerServiceContactDetails>
+                                    <Email>enquiries@blackpooltransport.com</Email>
+                                </CustomerServiceContactDetails>
+                            </Operator>
+                        </organisations>
+                    </ResourceFrame>
+                    <FareFrame version="1.0" id="epd:UK:BLAC:FareFrame_UK_PI_FARE_NETWORK:BLAC_products@pass:op" responsibilitySetRef="op:network_data">
+                        <Name>BLAC_products Network</Name>
+                        <TypeOfFrameRef version="fxc:v1.0" ref="fxc:UK:DFT:TypeOfFrame_UK_PI_FARE_NETWORK:FXCP"/>
+                        <FrameDefaults>
+                            <DefaultResponsibilitySetRef version="1.0" ref="op:network_data"/>
+                        </FrameDefaults>
+                        <prerequisites>
+                            <ResourceFrameRef version="1.0" ref="epd:UK:BLAC:ResourceFrame_UK_PI_COMMON:BLAC:op"/>
+                        </prerequisites>
+                        <fareZones>
+                            <FareZone version="1.0" id="op:BLAC_products@Test_Town_Centre">
+                                <Name>Test Town Centre</Name>
+                                <Description>Test Town Centre BLAC_products Zone</Description>
+                                <members>
+                                    <ScheduledStopPointRef versionRef="EXTERNAL" ref="naptStop:CHEPJWM">The Towers, Park Street, Macclesfield</ScheduledStopPointRef>
                                 <ScheduledStopPointRef versionRef="EXTERNAL" ref="naptStop:wrgdpma">Dog &amp; Partridge, New Manchester Road, Paddington</ScheduledStopPointRef>
                                 <ScheduledStopPointRef versionRef="EXTERNAL" ref="naptStop:MANATDWT">Manchester Rd, MANCHESTER RD, Hollinwood</ScheduledStopPointRef>
                                 <ScheduledStopPointRef versionRef="EXTERNAL" ref="naptStop:MANDGADW">Bower Fold, Mottram Rd, Bower Fold</ScheduledStopPointRef>

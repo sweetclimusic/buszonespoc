@@ -49,5 +49,6 @@ Fairtype, Bus Route
 
 GeoZoneTicket = PeriodGeoZoneTicket | MultiOperatorGeoZoneTicket
 
-create a Modal of a BaseTicket
+create a Modal of a BaseTicket, and split out other componets
+
 
