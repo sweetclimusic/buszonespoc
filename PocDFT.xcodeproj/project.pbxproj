@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC840A3826CBB62800C7787F /* BetterCodable in Frameworks */ = {isa = PBXBuildFile; productRef = CC840A3726CBB62800C7787F /* BetterCodable */; };
+		CC840A3A26CBB9D200C7787F /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC840A3926CBB9D200C7787F /* Types.swift */; };
 		CCF2F5A326C16B0800DEA781 /* PocDFTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5A226C16B0800DEA781 /* PocDFTApp.swift */; };
 		CCF2F5A526C16B0800DEA781 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5A426C16B0800DEA781 /* ContentView.swift */; };
 		CCF2F5A726C16B0D00DEA781 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5A626C16B0D00DEA781 /* Assets.xcassets */; };
@@ -14,7 +16,7 @@
 		CCF2F5B526C16B0E00DEA781 /* PocDFTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5B426C16B0E00DEA781 /* PocDFTTests.swift */; };
 		CCF2F5C026C16B0E00DEA781 /* PocDFTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5BF26C16B0E00DEA781 /* PocDFTUITests.swift */; };
 		CCF2F5D626C3E52500DEA781 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = CCF2F5D526C3E52500DEA781 /* XMLCoder */; };
-		CCF2F5D926C3EB2F00DEA781 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5D826C3EB2F00DEA781 /* Types.swift */; };
+		CCF2F5D926C3EB2F00DEA781 /* TestTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5D826C3EB2F00DEA781 /* TestTypes.swift */; };
 		CCF2F5DF26C5297C00DEA781 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */; settings = {ATTRIBUTES = (Required, ); }; };
 		CCF2F5E226C5337000DEA781 /* Types+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5E126C5337000DEA781 /* Types+TestHelpers.swift */; };
 		CCF2F5E526C5347300DEA781 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = CCF2F5E426C5347300DEA781 /* XMLCoder */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -40,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC840A3926CBB9D200C7787F /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		CCF2F59F26C16B0800DEA781 /* PocDFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocDFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF2F5A226C16B0800DEA781 /* PocDFTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocDFTApp.swift; sourceTree = "<group>"; };
 		CCF2F5A426C16B0800DEA781 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,7 +56,7 @@
 		CCF2F5BF26C16B0E00DEA781 /* PocDFTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocDFTUITests.swift; sourceTree = "<group>"; };
 		CCF2F5C126C16B0E00DEA781 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF2F5CD26C16B2900DEA781 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CCF2F5D826C3EB2F00DEA781 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		CCF2F5D826C3EB2F00DEA781 /* TestTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTypes.swift; sourceTree = "<group>"; };
 		CCF2F5E126C5337000DEA781 /* Types+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Types+TestHelpers.swift"; sourceTree = "<group>"; };
 		CCF2F5E726C5534200DEA781 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCF2F5D626C3E52500DEA781 /* XMLCoder in Frameworks */,
+				CC840A3826CBB62800C7787F /* BetterCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +164,8 @@
 		CCF2F5D726C3EB1B00DEA781 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CCF2F5D826C3EB2F00DEA781 /* Types.swift */,
+				CCF2F5D826C3EB2F00DEA781 /* TestTypes.swift */,
+				CC840A3926CBB9D200C7787F /* Types.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			name = PocDFT;
 			packageProductDependencies = (
 				CCF2F5D526C3E52500DEA781 /* XMLCoder */,
+				CC840A3726CBB62800C7787F /* BetterCodable */,
 			);
 			productName = PocDFT;
 			productReference = CCF2F59F26C16B0800DEA781 /* PocDFT.app */;
@@ -277,6 +283,7 @@
 			packageReferences = (
 				CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */,
 				CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				CC840A3626CBB62800C7787F /* XCRemoteSwiftPackageReference "BetterCodable" */,
 			);
 			productRefGroup = CCF2F5A026C16B0800DEA781 /* Products */;
 			projectDirPath = "";
@@ -322,9 +329,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF2F5D926C3EB2F00DEA781 /* Types.swift in Sources */,
+				CCF2F5D926C3EB2F00DEA781 /* TestTypes.swift in Sources */,
 				CCF2F5A526C16B0800DEA781 /* ContentView.swift in Sources */,
 				CCF2F5A326C16B0800DEA781 /* PocDFTApp.swift in Sources */,
+				CC840A3A26CBB9D200C7787F /* Types.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +657,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CC840A3626CBB62800C7787F /* XCRemoteSwiftPackageReference "BetterCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:marksands/BetterCodable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 		CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:MaxDesiatov/XMLCoder.git";
@@ -668,6 +684,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CC840A3726CBB62800C7787F /* BetterCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC840A3626CBB62800C7787F /* XCRemoteSwiftPackageReference "BetterCodable" */;
+			productName = BetterCodable;
+		};
 		CCF2F5D526C3E52500DEA781 /* XMLCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */;

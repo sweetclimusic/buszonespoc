@@ -2,81 +2,165 @@
 //  Types.swift
 //  PocDFT
 //
-//  Created by ashlee.muscroft on 11/08/2021.
+//  Created by ashlee.muscroft on 17/08/2021.
 //
 
+import BetterCodable
 import Foundation
 import XMLCoder
-//MARK: base types derieved from open source project, https://github.com/fares-data-build-tool/create-data/blob/develop/shared/matchingJsonTypes.ts
 
-//MARK: Concrete enum types
-enum TicketType: String, Decodable {
-    case flatFare = "flatFare"
-    case period = "period"
-    case multiOperator = "multiOperator"
-    case schoolService = "schoolService"
-    case single = "single"
-    case `return` = "return"
+// MARK: - PeriodGeoZoneTicket
+struct PeriodGeoZoneTicket: Decodable {
+    let publicationDelivery: PublicationDelivery
+    enum CodingKeys: String, CodingKey {
+        case publicationDelivery = "PublicationDelivery"
+    }
 }
 
-enum TimeRestrictionDay: String, Decodable {
-    case monday = "monday"
-    case tuesday = "tuesday"
-    case wednesday = "wednesday"
-    case thursday = "thursday"
-    case friday = "friday"
-    case saturday = "saturday"
-    case sunday = "sunday"
-    case bankHoliday = "bankHoliday"
+struct PublicationDelivery: Decodable {
+    let dataObjects: DataObjects?
+    enum CodingKeys: String, CodingKey {
+        case dataObjects = "dataObjects"
+    }
 }
 
-enum PaymentMethod: String, Decodable {
-    case cash = "cash"
-    case contactlessPaymentCard = "contactlessPaymentCard"
-    case creditCard = "creditCard"
-    case debitCard = "debitCard"
-    case directDebit = "directDebit"
-    case mobilePhone = "mobilePhone"
+struct DataObjects: Decodable {
+    var compositeFrame: [CompositeFrame]
+    
 }
 
-enum TicketFormat: String, Decodable {
-    case mobileApp = "mobileApp"
-    case paperTicket = "paperTicket"
-    case smartCard = "smartCard"
-}
-
-enum PurchaseLocation: String, Decodable {
-    case mobileDevice = "mobileDevice"
-    case onBoard = "onBoard"
-    case online = "online"
-}
-
-struct FullTimeRestriction: Decodable {
-    let day: TimeRestrictionDay
-    let timeBands: [TimeBand]
+struct CompositeFrame: Decodable {
+    let name: String
+    let description: String?
+    let frames: Frames?
+    var validBetween: Valid?
     
     enum CodingKeys: String, CodingKey {
-        case day
-        case timeBands
+        case description
+        case frames = "frames"
+        case name
+        case validBetween = "validBetween"
     }
 }
 
-// MARK: - TimeRestriction
-struct TimeRestriction: Decodable {
-    let day: String
-    let timeBands: [TimeBand]
+// MARK: - Frames
+/// Within a <frames> element, we will need access to ResourceFrame for org data
+/// Farefames hold several key elements.
+/// 1) Farefames with fareZones,
+/// 2) Farefame with tariffs, fareProducts, and salesOfferPackages
+/// 3) Farefame with fareTables
+struct Frames: Decodable {
+    let resourceFrame: ResourceFrame?
+    //var fareFrame: [FareFrame]?
+    
+//    enum CodingKeys: String, CodingKey {
+//        case resourceFrame = "resourceFrame"
+//      //  case fareFrame = "fareFrame"
+//    }
 }
 
-struct TimeBand: Decodable {
-    let startTime: String
-    let endTime: String
-}
-
-struct TicketPeriod: Decodable {
-    let period: TimeBand?
+// MARK: - Valid
+struct Valid: Decodable {
+    private let from,to: String?
+    var fromDate: Date? {
+        get {
+            self.date(from: self.from ?? "")
+        }
+    }
+    var toDate: Date? {
+        get {
+            self.date(from: self.to ?? "")
+        }
+    }
     enum CodingKeys: String, CodingKey {
-        case period
+        case from = "fromDate"
+        case to = "toDate"
     }
+}
+
+struct ResourceFrame: Decodable {
+    var busOperators: [TransportOperator]?
+    
+    private enum CodingKeys: String, CodingKey {
+        case organisation = "organisations"
+        case busOperators = "operator"
+    }
+    
+    init(from decoder: Decoder) throws {
+        var operators: [TransportOperator] = []
+        let organisation = try? decoder.container(keyedBy: CodingKeys.self)
+        if let values = try? organisation?.nestedContainer(keyedBy: CodingKeys.self, forKey: .organisation) {
+            operators.append(try values.decode(TransportOperator.self, forKey: .busOperators))
+        }
+        self.busOperators = operators
+    }
+}
+
+fileprivate struct ContactDetails: Decodable {
+    let phone: String
+    let url: String
+}
+fileprivate struct CustomerServiceDetails: Decodable {
+    let email: String
+}
+
+fileprivate struct Address: Decodable {
+    let street: String
+}
+
+// Organisations.Operator
+struct TransportOperator: Decodable {
+    let nocCode: String? //PublicCode
+    let name: String?
+    let shortName: String?
+    let tradingName: String?
+    private var contactDetails: [ContactDetails]?
+    private var customerServiceDetails: [CustomerServiceDetails]?
+    private var address: [Address]?
+    
+    private enum CodingKeys: String, CodingKey {
+        case nocCode = "publicCode"
+        case name, shortName, tradingName
+        //Union
+        case contactDetails, address
+        case customerServiceDetails = "customerServiceContactDetails"
+    }
+    
+//    init(from decoder: Decoder) throws {
+//        let busOperator = try? decoder.container(keyedBy: CodingKeys.self)
+//        //Expected values
+//        self.name = try busOperator?.decode(String.self, forKey: .name) ?? ""
+//        self.nocCode = try busOperator?.decode(String.self, forKey: .nocCode) ?? ""
+//        self.shortName = try busOperator?.decode(String.self, forKey: .shortName) ?? ""
+//        // Optionals
+//        self.tradingName = try busOperator?.decode(String.self, forKey: .tradingName) ?? ""
+//
+//        if let contactDetails = try? busOperator?.nestedContainer(keyedBy: CodingKeys.self, forKey: .contactDetails) {
+//            //MARK: Decode contact details
+////            self.phone = try contactDetails.decode(String.self, forKey: .phone)
+////            self.url = try contactDetails.decode(String.self, forKey: .url)
+//        }
+//
+//        if let address = try? busOperator?.nestedContainer(keyedBy: CodingKeys.self, forKey: .address) {
+//            self.address = try address.decode(String.self, forKey: .address)
+//        }
+//
+//        //MARK: Decode email address
+//        if let customerServiceDetails = try? busOperator?.nestedContainer(keyedBy: CodingKeys.self, forKey: .customerServiceDetails) {
+//            self.email = try customerServiceDetails.decode(String.self, forKey: .email)
+//        }
+//    }
+}
+
+struct FareFrame: Decodable {
+    @LossyArray var fareZones: [FareZone]
+    //@LossyArray var tariffs: [Tariffs]
+    //@LossyArray var fareTables: [FareTables]
+    //@LossyArray var fareProducts: [FareProducts]
+    //@LossyArray var salesOfferPackage: [SalesOfferPackage]
+    ///Farefames with fareZones,
+    /// 2) Farefame with tariffs, fareProducts, and salesOfferPackages
+    /// 3) Farefame with fareTables
 }
 
 struct FareZone: Decodable {
@@ -100,193 +184,36 @@ struct Stop: Decodable {
     let street: String?
 }
 
-struct PublicationDelivery: Decodable {
-    let dataObjects: DataObjects
-}
-
-struct DataObjects: Decodable {
-    let compositeFrame: [CompositeFrame]
-    
-}
-
-struct CompositeFrame: Decodable {
-    let operatorName: String
-    let description: String
-    let frames: Frames
-    
-    enum CodingKeys: String, CodingKey {
-        case operatorName = "Name"
-        case description
-        case frames
-    }
-}
-
-struct Frames: Decodable {
-    let items: [Frame]
-}
-
-enum Frame {
-    struct Content {
-        let name: String
-        let organisation: [String:String]
-        let fareFrame: [String:String]
-        let resourceFrame: [String:String]
-    }
-    case fare(Content)
-    case resource(Content)
-}
-
-extension Frame.Content: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case name
-        case organisation
-        case fareFrame
-        case resourceFrame
-    }
-}
-
-extension Frame.Content: Equatable {}
-
-extension Frame: Decodable {
-    enum CodingKeys: String, XMLChoiceCodingKey {
-        case fare = "FareFrames", resource = "ResourceFrame"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let singContainer = try decoder.singleValueContainer()
-        do {
-            self = .fare(try container.decode(Content.self, forKey: .fare))
-        } catch {
-            self =
-               .resource(try container.decode(Content.self, forKey: .resource))
+// MARK: - Extensions
+extension Valid {
+    func date(from dateString: String = "2019-05-01T00:00:00",
+              _ dateFormat: String = "YYYY-MM-DD'T'HH:mm:ss") -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = dateFormat
+        guard let date = dateFormatter.date(from: dateString) else {
+            return nil
         }
+        return date
     }
 }
 
-// MARK: - PeriodGeoZoneTicket
-struct PeriodGeoZoneTicket: Decodable{
-//    let zoneName: String
-//    let operatorName: String
-    let fareZones: [FareZone]
-    var products: [Product]
-    let dataObjects: [CompositeFrame]
-    
-    private enum CodingKeys: String, CodingKey {
-        case compositeFrame
-        case dataObjects
-        case products
-        case zones
+// MARK: Contact detail Helpers
+extension TransportOperator {
+    func phone() -> String {
+        return self.contactDetails?.first?.phone ?? ""
     }
     
-    private enum FrameKeys: String, CodingKey {
-        case frames
+    func website() -> String {
+        return self.contactDetails?.first?.url ?? ""
     }
     
-    private enum TariffKeys: String, CodingKey {
-        case tariffs
+    func street() -> String {
+        return self.address?.first?.street ?? ""
     }
     
-    private enum FareZoneKeys: String, CodingKey {
-        case fareZones
-    }
-    // from decoder defined inorder to skip to the nested element to act as the first element.
-    init(from decoder: Decoder) throws {
-        let dataObject = try decoder.container(keyedBy: CodingKeys.self)
-        // capture the child element dataObjects to extract data we want from the XML
-        let values = try dataObject.nestedContainer(keyedBy: CodingKeys.self, forKey: .dataObjects)
-        
-        //MARK: CompositeFrame
-        let framesContainer = try values.nestedContainer(keyedBy: FrameKeys.self, forKey: .compositeFrame)
-        var frames = [CompositeFrame]()
-        frames.append(try framesContainer.decode(CompositeFrame.self, forKey: .frames))
-        dataObjects = frames
-//        operatorName = try values.decode(String.self, forKey: .name)
-//        zoneName = try values.decode(String.self, forKey: .zoneName)
-//
-        //MARK: tariffs
-        let tariffsContainer = try dataObject.nestedContainer(keyedBy: TariffKeys.self, forKey: .products)
-        var tariffs = [Product]()
-        tariffs.append(try tariffsContainer.decode(Product.self, forKey: .tariffs))
-        products = tariffs
-        
-        //MARK: farezones
-        let fareZoneContainer = try dataObject.nestedContainer(keyedBy: FareZoneKeys.self, forKey: .zones)
-        var fares = [FareZone]()
-        fares.append(try fareZoneContainer.decode(FareZone.self, forKey: .fareZones))
-        fareZones = fares
+    func email() -> String {
+        return self.customerServiceDetails?.first?.email ?? ""
     }
 }
-
-
-
-struct BaseTicket: Decodable {
-    let nocCode: String
-    let type: TicketType
-    let user: User
-    let email: String
-    let uuid: String
-    let timeRestriction: [FullTimeRestriction]
-    let ticketPeriod: TicketPeriod
-    enum CodingKeys: String, CodingKey {
-     case nocCode,email,uuid
-     case user = "UserProfile"
-     case timeRestriction = "FareDayType"
-     case type,ticketPeriod
-    }
-}
-
-// Specific ticket types derieved from open source project, https://github.com/fares-data-build-tool/create-data/tree/develop/repos/fdbt-netex-output/src\
-
-struct User: Decodable{
-    let passengerType: String
-    let ageRangeMin: String?
-    let ageRangeMax: String?
-    let proofDocuments: [String]
-    
-    enum CodingKeys: String, CodingKey {
-        case passengerType = "Name"
-        case ageRangeMin = "MinimumAge"
-        case ageRangeMax = "MaximumAge"
-        case proofDocuments = "ProofRequired"
-    }
-}
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let periodGeoZoneTicket = try? newJSONDecoder().decode(PeriodGeoZoneTicket.self, from: jsonData)
-
-//Organisations.Operator
-struct Operator: Decodable {
-    let nocCode: String //PublicCode
-    let name: String
-    let shortName: String
-    let phone: String //ContactDetails.Phone
-    let website: String //ContactDetails.URL
-    let email: String //CustomerServiceContactDetails.Email
-    let address: String //Address.Street
-}
-
-// MARK: - Product
-struct Product: Decodable {
-    let productName, productPrice, productDuration, productValidity: String
-    let salesOfferPackages: [SalesOfferPackage]
-}
-
-// MARK: - SalesOfferPackage
-struct SalesOfferPackage: Decodable {
-    let name: String
-    let salesOfferPackageDescription: String
-    let purchaseLocations: [PurchaseLocation]
-    let paymentMethods: [PaymentMethod]
-    let ticketFormats: [TicketFormat]
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case salesOfferPackageDescription = "description"
-        case purchaseLocations, paymentMethods, ticketFormats
-    }
-}
-
-// MARK: Literal types from XML
-
