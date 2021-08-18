@@ -13,7 +13,7 @@ import XMLCoder
 struct PeriodGeoZoneTicket: Decodable {
     let publicationDelivery: PublicationDelivery
     enum CodingKeys: String, CodingKey {
-        case publicationDelivery = "PublicationDelivery"
+        case publicationDelivery = "publicationDelivery"
     }
 }
 
@@ -51,12 +51,12 @@ struct CompositeFrame: Decodable {
 /// 3) Farefame with fareTables
 struct Frames: Decodable {
     let resourceFrame: ResourceFrame?
-    //var fareFrame: [FareFrame]?
+    var fareFrames: [FareFrame]?
     
-//    enum CodingKeys: String, CodingKey {
-//        case resourceFrame = "resourceFrame"
-//      //  case fareFrame = "fareFrame"
-//    }
+    enum CodingKeys: String, CodingKey {
+        case resourceFrame = "resourceFrame"
+        case fareFrames = "fareFrame"
+    }
 }
 
 // MARK: - Valid
@@ -117,6 +117,30 @@ struct TransportOperator: Decodable {
     private var contactDetails: [ContactDetails]?
     private var customerServiceDetails: [CustomerServiceDetails]?
     private var address: [Address]?
+    // MARK: readOnly computed properties
+    var phone: String {
+        get {
+            self.contactDetails?.first?.phone ?? ""
+        }
+    }
+    
+    var website: String {
+        get {
+            self.contactDetails?.first?.url ?? ""
+        }
+    }
+    
+    var street: String {
+        get {
+            self.address?.first?.street ?? ""
+        }
+    }
+    
+    var email: String {
+        get {
+            self.customerServiceDetails?.first?.email ?? ""
+        }
+    }
     
     private enum CodingKeys: String, CodingKey {
         case nocCode = "publicCode"
@@ -153,7 +177,10 @@ struct TransportOperator: Decodable {
 }
 
 struct FareFrame: Decodable {
-    @LossyArray var fareZones: [FareZone]
+    var fareZones: FareZones?
+    struct FareZones: Decodable {
+        let fareZone: [FareZone?]
+    }
     //@LossyArray var tariffs: [Tariffs]
     //@LossyArray var fareTables: [FareTables]
     //@LossyArray var fareProducts: [FareProducts]
@@ -161,19 +188,51 @@ struct FareFrame: Decodable {
     ///Farefames with fareZones,
     /// 2) Farefame with tariffs, fareProducts, and salesOfferPackages
     /// 3) Farefame with fareTables
-}
-
-struct FareZone: Decodable {
-    let name: String
-    let description: String
-    let stops: [Stop]
     private enum CodingKeys: String, CodingKey {
-        case name, description, stops = "members"
+        case fareZones = "fareZones"
     }
 }
 
-struct Stop: Decodable {
-    let stopName: String
+struct FareZone: Decodable {
+    let name: String?
+    let description: String?
+    let members: Members?
+
+    struct Members: Decodable {
+        let stops: [Stop]?
+        private enum CodingKeys: String, CodingKey {
+            case stops = "scheduledStopPointRef"
+        }
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case name, description
+        case members
+    }
+}
+
+struct Stop: Decodable , DynamicNodeDecoding {
+    let name: String?
+    let naptStop: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case name = ""
+        case naptStop = "ref"
+    }
+    
+    static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+            case CodingKeys.naptStop:
+                return .attribute
+            default:
+                return .element
+        }
+    }
+
+}
+
+//MARK: - NotImplemented
+struct StopData {
     let naptanCode: String
     let atcoCode: String
     let localityCode: String
@@ -199,21 +258,15 @@ extension Valid {
     }
 }
 
-// MARK: Contact detail Helpers
-extension TransportOperator {
-    func phone() -> String {
-        return self.contactDetails?.first?.phone ?? ""
-    }
-    
-    func website() -> String {
-        return self.contactDetails?.first?.url ?? ""
-    }
-    
-    func street() -> String {
-        return self.address?.first?.street ?? ""
-    }
-    
-    func email() -> String {
-        return self.customerServiceDetails?.first?.email ?? ""
+extension Stop: Equatable {
+    static func == (lhs: Stop, rhs: Stop) -> Bool {
+        // if any are optional exit out
+        guard let rname = rhs.name,
+              let lname = lhs.name,
+              let rnapt = rhs.naptStop,
+              let lnapt = lhs.naptStop else {
+            return false
+        }
+        return rname == lname && lnapt == rnapt
     }
 }

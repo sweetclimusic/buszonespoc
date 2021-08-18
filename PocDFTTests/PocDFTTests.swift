@@ -20,6 +20,7 @@ class PocDFTTests: XCTestCase {
         }
         let decoder = XMLDecoder()
         decoder.keyDecodingStrategy = .convertFromCapitalized
+        
         do {
             geoZoneTicket = try decoder.decode(PublicationDelivery.self, from: xmlData)
         }
@@ -44,12 +45,13 @@ class PocDFTTests: XCTestCase {
         // This is the first test, can we read XML to swift types
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let sample = geoZoneTicket.dataObjects
-        print(sample.debugDescription)
+        
         guard let firstFrame = compositeFrame.first
         else {
+            print(sample.debugDescription)
             return XCTFail("Unable to access a valid compositeFrame: \(String(describing: compositeFrame))")
         }
-        print(firstFrame.self)
+        
         XCTAssertNotNil(firstFrame.name)
         XCTAssertNotNil(firstFrame.description)
         XCTAssertNotNil(firstFrame.frames)
@@ -112,10 +114,36 @@ class PocDFTTests: XCTestCase {
         //MARK: Then I can view the organisations details
         XCTAssertEqual(value.nocCode , mockOrganization["publicCode"] )
         XCTAssertEqual(value.name,mockOrganization["name"] )
-        XCTAssertEqual(value.phone(), mockOrganization["phone"])
-        XCTAssertEqual(value.website(), mockOrganization["url"])
-        XCTAssertEqual(value.street(), mockOrganization["address"])
-        XCTAssertEqual(value.email(), mockOrganization["email"])
+        XCTAssertEqual(value.phone, mockOrganization["phone"])
+        XCTAssertEqual(value.website, mockOrganization["url"])
+        XCTAssertEqual(value.street, mockOrganization["address"])
+        XCTAssertEqual(value.email, mockOrganization["email"])
+    }
+    
+    func testForAListofStops() throws {
+        let mockFareZone = [
+            "name": "Test Town Centre",
+            "description": "Test Town Centre BLAC_products Zone"
+        ]
+        //MARK: Given a fareZone in a compositeFrame.FareFrame
+        guard let fareFrames = compositeFrame.first?.frames?.fareFrames else {
+            return XCTFail("Missing FareFrame from Operator \(String(describing: compositeFrame.first?.name))")
+        }
+        //MARK: When I extract the members from the first fareZones
+        guard let fareZone = fareFrames.first?.fareZones?.fareZone.first else {
+            return XCTFail("Missing fareZones from expected fareFrame")
+        }
+        print(String(describing: fareZone.debugDescription))
+        XCTAssertNotNil(fareZone)
+        
+        //MARK: Then I can view the ScheduleStopPoints
+        XCTAssertEqual(mockFareZone["name"], fareZone?.name)
+        XCTAssertEqual(mockFareZone["description"], fareZone?.description)
+        guard let stops = fareZone?.members?.stops else {
+            return XCTFail("Failed to extract any stops")
+        }
+        XCTAssertEqual( mockStops, stops)
+        
     }
 //    func testPerformanceExample() throws {
 //        // This is an example of a performance test case.
