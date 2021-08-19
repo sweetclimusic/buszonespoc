@@ -29,18 +29,18 @@ class PocDFTTests: XCTestCase {
         }
         
         XCTAssertNotNil(geoZoneTicket)
-
+        
         guard let compositeFrame = geoZoneTicket.dataObjects?.compositeFrame
         else {
             return XCTFail("Unable to access a valid compositeFrame")
         }
         self.compositeFrame = compositeFrame
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testDecodeASampleXML() throws {
         // This is the first test, can we read XML to swift types
         // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -86,7 +86,7 @@ class PocDFTTests: XCTestCase {
         XCTAssertEqual(secondFrameValidBetween.fromDate, expectedFromDate)
         XCTAssertEqual(secondFrameValidBetween.toDate, expectedToDate)
     }
-
+    
     func testResourceFrame() throws {
         // MARK: Given a mockOrganization and I have extract the compositeFrames
         let mockOrganization: [String:String] =
@@ -110,7 +110,7 @@ class PocDFTTests: XCTestCase {
         guard let value = busOperators?.first else {
             return XCTFail("Failed to decode busOperator")
         }
-
+        
         //MARK: Then I can view the organisations details
         XCTAssertEqual(value.nocCode , mockOrganization["publicCode"] )
         XCTAssertEqual(value.name,mockOrganization["name"] )
@@ -130,26 +130,51 @@ class PocDFTTests: XCTestCase {
             return XCTFail("Missing FareFrame from Operator \(String(describing: compositeFrame.first?.name))")
         }
         //MARK: When I extract the members from the first fareZones
-        guard let fareZone = fareFrames.first?.fareZones?.fareZone.first else {
+        guard let fareZone = fareFrames.first?.fareZones?.fareZone?.first else {
             return XCTFail("Missing fareZones from expected fareFrame")
         }
-        print(String(describing: fareZone.debugDescription))
         XCTAssertNotNil(fareZone)
         
         //MARK: Then I can view the ScheduleStopPoints
-        XCTAssertEqual(mockFareZone["name"], fareZone?.name)
-        XCTAssertEqual(mockFareZone["description"], fareZone?.description)
-        guard let stops = fareZone?.members?.stops else {
+        XCTAssertEqual(mockFareZone["name"], fareZone.name)
+        XCTAssertEqual(mockFareZone["description"], fareZone.description)
+        guard let stops = fareZone.members?.stops else {
             return XCTFail("Failed to extract any stops")
         }
         XCTAssertEqual( mockStops, stops)
+    }
+    
+    func testForTariffs() throws {
+        guard let secondFareFrame = compositeFrame.first?.frames?.fareFrames?[1] else {
+            return XCTFail("Failed to extract Tariffs")
+        }
+        //print(String(describing: secondFareFrame.tariffs))
+        var operatorTariffs = [String:[Tariff]]()
+        //XCTAssertEqual(secondFareFrame.tariffs,mockTariffs)
+        //frames.FareFrames.tariffs.Tariff.timeIntervals.TimeInterval.Name
+        let frames: [Frames] = compositeFrame.filter{$0.frames != nil}
+            .compactMap{ $0.frames }
+        let fareFrames: [FareFrame] = frames.filter({
+                                                        $0.fareFrames?.filter != nil}
+        ).flatMap({$0.fareFrames!})
+        let tariffFrames = fareFrames.filter{$0.tariffs != nil}
+            .compactMap{$0.tariffs}
+        _ = tariffFrames.map{
+            XCTAssertNotNil($0.tariff?.name)
+            XCTAssertNotNil($0.tariff?.periods)
+        }
         
     }
-//    func testPerformanceExample() throws {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
-
+    
+    func testForProductCosts() throws {
+        //FareFrames.fareTables.fareTable.includes.FareTable.includes.FareTable.includes.prices.timeIntervalPrice.Amount
+    }
+    
+    //    func testPerformanceExample() throws {
+    //        // This is an example of a performance test case.
+    //        self.measure {
+    //            // Put the code you want to measure the time of here.
+    //        }
+    //    }
+    
 }

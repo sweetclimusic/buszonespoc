@@ -149,48 +149,31 @@ struct TransportOperator: Decodable {
         case contactDetails, address
         case customerServiceDetails = "customerServiceContactDetails"
     }
-    
-//    init(from decoder: Decoder) throws {
-//        let busOperator = try? decoder.container(keyedBy: CodingKeys.self)
-//        //Expected values
-//        self.name = try busOperator?.decode(String.self, forKey: .name) ?? ""
-//        self.nocCode = try busOperator?.decode(String.self, forKey: .nocCode) ?? ""
-//        self.shortName = try busOperator?.decode(String.self, forKey: .shortName) ?? ""
-//        // Optionals
-//        self.tradingName = try busOperator?.decode(String.self, forKey: .tradingName) ?? ""
-//
-//        if let contactDetails = try? busOperator?.nestedContainer(keyedBy: CodingKeys.self, forKey: .contactDetails) {
-//            //MARK: Decode contact details
-////            self.phone = try contactDetails.decode(String.self, forKey: .phone)
-////            self.url = try contactDetails.decode(String.self, forKey: .url)
-//        }
-//
-//        if let address = try? busOperator?.nestedContainer(keyedBy: CodingKeys.self, forKey: .address) {
-//            self.address = try address.decode(String.self, forKey: .address)
-//        }
-//
-//        //MARK: Decode email address
-//        if let customerServiceDetails = try? busOperator?.nestedContainer(keyedBy: CodingKeys.self, forKey: .customerServiceDetails) {
-//            self.email = try customerServiceDetails.decode(String.self, forKey: .email)
-//        }
-//    }
 }
 
 struct FareFrame: Decodable {
     var fareZones: FareZones?
     struct FareZones: Decodable {
-        let fareZone: [FareZone?]
+        let fareZone: [FareZone]?
     }
-    //@LossyArray var tariffs: [Tariffs]
+    var tariffs: Tariffs?
+    //frames.FareFrames.tariffs.Tariff.timeIntervals.TimeInterval.Name
+    struct Tariffs: Decodable {
+        let tariff: Tariff?
+        private enum CodingKeys: String, CodingKey {
+            case tariff = "tariff"
+        }
+    }
     //@LossyArray var fareTables: [FareTables]
     //@LossyArray var fareProducts: [FareProducts]
     //@LossyArray var salesOfferPackage: [SalesOfferPackage]
     ///Farefames with fareZones,
     /// 2) Farefame with tariffs, fareProducts, and salesOfferPackages
     /// 3) Farefame with fareTables
-    private enum CodingKeys: String, CodingKey {
-        case fareZones = "fareZones"
-    }
+//    private enum CodingKeys: String, CodingKey {
+//        case fareZones = "fareZones"
+//        case t
+//    }
 }
 
 struct FareZone: Decodable {
@@ -231,7 +214,37 @@ struct Stop: Decodable , DynamicNodeDecoding {
 
 }
 
-//MARK: - NotImplemented
+struct Tariff: Decodable {
+    let name: String?
+    private let timeIntervals: TimeIntervals?
+    private struct TimeIntervals: Decodable {
+        let ticketTimePeriod: [TicketTimePeriod]?
+        
+        private enum CodingKeys: String, CodingKey {
+            case ticketTimePeriod = "timeInterval"
+        }
+    }
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case timeIntervals
+    }
+    var periods: [TicketTimePeriod]? {
+        get {
+            timeIntervals?.ticketTimePeriod
+        }
+    }
+}
+
+struct TicketTimePeriod: Decodable, Equatable {
+    let id: String?
+    let name: String?
+    let description: String?
+    private enum CodingKeys: String, CodingKey {
+        case id, name, description
+    }
+}
+
+//MARK: - NotImplemented, one day a DB or API that has lat long to map to stops naptanCodes
 struct StopData {
     let naptanCode: String
     let atcoCode: String
@@ -268,5 +281,16 @@ extension Stop: Equatable {
             return false
         }
         return rname == lname && lnapt == rnapt
+    }
+}
+
+extension TicketTimePeriod: DynamicNodeDecoding {
+    static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+            case CodingKeys.id:
+                return .attribute
+            default:
+                return .element
+        }
     }
 }
