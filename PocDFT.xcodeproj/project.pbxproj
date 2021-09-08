@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC840A3826CBB62800C7787F /* BetterCodable in Frameworks */ = {isa = PBXBuildFile; productRef = CC840A3726CBB62800C7787F /* BetterCodable */; };
-		CC840A3A26CBB9D200C7787F /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC840A3926CBB9D200C7787F /* Types.swift */; };
+		9C70661118187EA5475185F1 /* PriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C70634E33AB7273C68FEE48 /* PriceViewModel.swift */; };
+		9C706796FF32636365BBFC52 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7066C0B9E01698962FF20F /* DataTypes.swift */; };
+		9C706A0DD7D904F949C16C88 /* PocDFTViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C706672DDDD82F11E449DD6 /* PocDFTViewModelTests.swift */; };
+		9C706F3E20356327EE72C5A4 /* FareTableXmlTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C706D85A32CC7C16665A08B /* FareTableXmlTypes.swift */; };
+		CC13160F26DFC73F00EF4DED /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13160E26DFC73F00EF4DED /* ProductViewModel.swift */; };
+		CC13161026E1150700EF4DED /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = CCF2F5D526C3E52500DEA781 /* XMLCoder */; };
+		CC840A3A26CBB9D200C7787F /* XmlTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC840A3926CBB9D200C7787F /* XmlTypes.swift */; };
 		CCF2F5A326C16B0800DEA781 /* PocDFTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5A226C16B0800DEA781 /* PocDFTApp.swift */; };
 		CCF2F5A526C16B0800DEA781 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5A426C16B0800DEA781 /* ContentView.swift */; };
 		CCF2F5A726C16B0D00DEA781 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5A626C16B0D00DEA781 /* Assets.xcassets */; };
 		CCF2F5AA26C16B0D00DEA781 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF2F5A926C16B0D00DEA781 /* Preview Assets.xcassets */; };
-		CCF2F5B526C16B0E00DEA781 /* PocDFTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5B426C16B0E00DEA781 /* PocDFTTests.swift */; };
+		CCF2F5B526C16B0E00DEA781 /* PocDFTModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5B426C16B0E00DEA781 /* PocDFTModelTests.swift */; };
 		CCF2F5C026C16B0E00DEA781 /* PocDFTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5BF26C16B0E00DEA781 /* PocDFTUITests.swift */; };
-		CCF2F5D626C3E52500DEA781 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = CCF2F5D526C3E52500DEA781 /* XMLCoder */; };
-		CCF2F5D926C3EB2F00DEA781 /* TestTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5D826C3EB2F00DEA781 /* TestTypes.swift */; };
 		CCF2F5DF26C5297C00DEA781 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */; settings = {ATTRIBUTES = (Required, ); }; };
 		CCF2F5E226C5337000DEA781 /* Types+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2F5E126C5337000DEA781 /* Types+TestHelpers.swift */; };
 		CCF2F5E526C5347300DEA781 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = CCF2F5E426C5347300DEA781 /* XMLCoder */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -42,7 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CC840A3926CBB9D200C7787F /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		9C70634E33AB7273C68FEE48 /* PriceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceViewModel.swift; sourceTree = "<group>"; };
+		9C706672DDDD82F11E449DD6 /* PocDFTViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocDFTViewModelTests.swift; sourceTree = "<group>"; };
+		9C7066C0B9E01698962FF20F /* DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
+		9C706D85A32CC7C16665A08B /* FareTableXmlTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FareTableXmlTypes.swift; sourceTree = "<group>"; };
+		CC13160E26DFC73F00EF4DED /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		CC840A3926CBB9D200C7787F /* XmlTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmlTypes.swift; sourceTree = "<group>"; };
 		CCF2F59F26C16B0800DEA781 /* PocDFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocDFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF2F5A226C16B0800DEA781 /* PocDFTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocDFTApp.swift; sourceTree = "<group>"; };
 		CCF2F5A426C16B0800DEA781 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,13 +58,12 @@
 		CCF2F5A926C16B0D00DEA781 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CCF2F5AB26C16B0D00DEA781 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF2F5B026C16B0E00DEA781 /* PocDFTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocDFTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CCF2F5B426C16B0E00DEA781 /* PocDFTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocDFTTests.swift; sourceTree = "<group>"; };
+		CCF2F5B426C16B0E00DEA781 /* PocDFTModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocDFTModelTests.swift; sourceTree = "<group>"; };
 		CCF2F5B626C16B0E00DEA781 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF2F5BB26C16B0E00DEA781 /* PocDFTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocDFTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF2F5BF26C16B0E00DEA781 /* PocDFTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocDFTUITests.swift; sourceTree = "<group>"; };
 		CCF2F5C126C16B0E00DEA781 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF2F5CD26C16B2900DEA781 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CCF2F5D826C3EB2F00DEA781 /* TestTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTypes.swift; sourceTree = "<group>"; };
 		CCF2F5E126C5337000DEA781 /* Types+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Types+TestHelpers.swift"; sourceTree = "<group>"; };
 		CCF2F5E726C5534200DEA781 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,8 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF2F5D626C3E52500DEA781 /* XMLCoder in Frameworks */,
-				CC840A3826CBB62800C7787F /* BetterCodable in Frameworks */,
+				CC13161026E1150700EF4DED /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC13160D26DFC72000EF4DED /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CC13160E26DFC73F00EF4DED /* ProductViewModel.swift */,
+				9C70634E33AB7273C68FEE48 /* PriceViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		CCF2F59626C16B0800DEA781 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +132,7 @@
 		CCF2F5A126C16B0800DEA781 /* PocDFT */ = {
 			isa = PBXGroup;
 			children = (
+				CC13160D26DFC72000EF4DED /* ViewModels */,
 				CCF2F5D726C3EB1B00DEA781 /* Models */,
 				CCF2F5A226C16B0800DEA781 /* PocDFTApp.swift */,
 				CCF2F5A426C16B0800DEA781 /* ContentView.swift */,
@@ -139,8 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				CCF2F5E026C5333900DEA781 /* Types */,
-				CCF2F5B426C16B0E00DEA781 /* PocDFTTests.swift */,
+				CCF2F5B426C16B0E00DEA781 /* PocDFTModelTests.swift */,
 				CCF2F5B626C16B0E00DEA781 /* Info.plist */,
+				9C706672DDDD82F11E449DD6 /* PocDFTViewModelTests.swift */,
 			);
 			path = PocDFTTests;
 			sourceTree = "<group>";
@@ -164,8 +181,9 @@
 		CCF2F5D726C3EB1B00DEA781 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CCF2F5D826C3EB2F00DEA781 /* TestTypes.swift */,
-				CC840A3926CBB9D200C7787F /* Types.swift */,
+				CC840A3926CBB9D200C7787F /* XmlTypes.swift */,
+				9C7066C0B9E01698962FF20F /* DataTypes.swift */,
+				9C706D85A32CC7C16665A08B /* FareTableXmlTypes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,7 +221,6 @@
 			name = PocDFT;
 			packageProductDependencies = (
 				CCF2F5D526C3E52500DEA781 /* XMLCoder */,
-				CC840A3726CBB62800C7787F /* BetterCodable */,
 			);
 			productName = PocDFT;
 			productReference = CCF2F59F26C16B0800DEA781 /* PocDFT.app */;
@@ -281,9 +298,8 @@
 			);
 			mainGroup = CCF2F59626C16B0800DEA781;
 			packageReferences = (
-				CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */,
-				CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
-				CC840A3626CBB62800C7787F /* XCRemoteSwiftPackageReference "BetterCodable" */,
+				CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder.git" */,
+				CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing.git" */,
 			);
 			productRefGroup = CCF2F5A026C16B0800DEA781 /* Products */;
 			projectDirPath = "";
@@ -329,10 +345,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF2F5D926C3EB2F00DEA781 /* TestTypes.swift in Sources */,
 				CCF2F5A526C16B0800DEA781 /* ContentView.swift in Sources */,
 				CCF2F5A326C16B0800DEA781 /* PocDFTApp.swift in Sources */,
-				CC840A3A26CBB9D200C7787F /* Types.swift in Sources */,
+				CC13160F26DFC73F00EF4DED /* ProductViewModel.swift in Sources */,
+				CC840A3A26CBB9D200C7787F /* XmlTypes.swift in Sources */,
+				9C706796FF32636365BBFC52 /* DataTypes.swift in Sources */,
+				9C70661118187EA5475185F1 /* PriceViewModel.swift in Sources */,
+				9C706F3E20356327EE72C5A4 /* FareTableXmlTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,8 +359,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF2F5B526C16B0E00DEA781 /* PocDFTTests.swift in Sources */,
+				CCF2F5B526C16B0E00DEA781 /* PocDFTModelTests.swift in Sources */,
 				CCF2F5E226C5337000DEA781 /* Types+TestHelpers.swift in Sources */,
+				9C706A0DD7D904F949C16C88 /* PocDFTViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,15 +677,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CC840A3626CBB62800C7787F /* XCRemoteSwiftPackageReference "BetterCodable" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:marksands/BetterCodable.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.0;
-			};
-		};
-		CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+		CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:MaxDesiatov/XMLCoder.git";
 			requirement = {
@@ -673,7 +685,7 @@
 				minimumVersion = 0.13.0;
 			};
 		};
-		CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+		CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:pointfreeco/swift-snapshot-testing.git";
 			requirement = {
@@ -684,24 +696,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CC840A3726CBB62800C7787F /* BetterCodable */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CC840A3626CBB62800C7787F /* XCRemoteSwiftPackageReference "BetterCodable" */;
-			productName = BetterCodable;
-		};
 		CCF2F5D526C3E52500DEA781 /* XMLCoder */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			package = CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder.git" */;
 			productName = XMLCoder;
 		};
 		CCF2F5DE26C5297C00DEA781 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			package = CCF2F5DD26C5297C00DEA781 /* XCRemoteSwiftPackageReference "swift-snapshot-testing.git" */;
 			productName = SnapshotTesting;
 		};
 		CCF2F5E426C5347300DEA781 /* XMLCoder */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			package = CCF2F5D426C3E52500DEA781 /* XCRemoteSwiftPackageReference "XMLCoder.git" */;
 			productName = XMLCoder;
 		};
 /* End XCSwiftPackageProductDependency section */
