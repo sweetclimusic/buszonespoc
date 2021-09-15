@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C7060F0C9AA5CEF86DCBFED /* CompositeFrameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C706DC7DC04EEA036DD94C6 /* CompositeFrameViewModel.swift */; };
 		9C70661118187EA5475185F1 /* PriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C70634E33AB7273C68FEE48 /* PriceViewModel.swift */; };
 		9C706796FF32636365BBFC52 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7066C0B9E01698962FF20F /* DataTypes.swift */; };
+		9C70699F28BF8CDA5057E8EB /* PeriodFareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C70696CC7E1D7ABCE3C0C03 /* PeriodFareViewModel.swift */; };
+		9C7069B0868778C33846307A /* TransportOperatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C706CD3B6DB2212F5A41D76 /* TransportOperatorViewModel.swift */; };
 		9C706A0DD7D904F949C16C88 /* PocDFTViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C706672DDDD82F11E449DD6 /* PocDFTViewModelTests.swift */; };
 		9C706F3E20356327EE72C5A4 /* FareTableXmlTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C706D85A32CC7C16665A08B /* FareTableXmlTypes.swift */; };
 		CC13160F26DFC73F00EF4DED /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13160E26DFC73F00EF4DED /* ProductViewModel.swift */; };
@@ -48,7 +51,10 @@
 		9C70634E33AB7273C68FEE48 /* PriceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceViewModel.swift; sourceTree = "<group>"; };
 		9C706672DDDD82F11E449DD6 /* PocDFTViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocDFTViewModelTests.swift; sourceTree = "<group>"; };
 		9C7066C0B9E01698962FF20F /* DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
+		9C70696CC7E1D7ABCE3C0C03 /* PeriodFareViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodFareViewModel.swift; sourceTree = "<group>"; };
+		9C706CD3B6DB2212F5A41D76 /* TransportOperatorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportOperatorViewModel.swift; sourceTree = "<group>"; };
 		9C706D85A32CC7C16665A08B /* FareTableXmlTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FareTableXmlTypes.swift; sourceTree = "<group>"; };
+		9C706DC7DC04EEA036DD94C6 /* CompositeFrameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeFrameViewModel.swift; sourceTree = "<group>"; };
 		CC13160E26DFC73F00EF4DED /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		CC840A3926CBB9D200C7787F /* XmlTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmlTypes.swift; sourceTree = "<group>"; };
 		CCF2F59F26C16B0800DEA781 /* PocDFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocDFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +107,9 @@
 			children = (
 				CC13160E26DFC73F00EF4DED /* ProductViewModel.swift */,
 				9C70634E33AB7273C68FEE48 /* PriceViewModel.swift */,
+				9C706DC7DC04EEA036DD94C6 /* CompositeFrameViewModel.swift */,
+				9C706CD3B6DB2212F5A41D76 /* TransportOperatorViewModel.swift */,
+				9C70696CC7E1D7ABCE3C0C03 /* PeriodFareViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -352,6 +361,9 @@
 				9C706796FF32636365BBFC52 /* DataTypes.swift in Sources */,
 				9C70661118187EA5475185F1 /* PriceViewModel.swift in Sources */,
 				9C706F3E20356327EE72C5A4 /* FareTableXmlTypes.swift in Sources */,
+				9C7060F0C9AA5CEF86DCBFED /* CompositeFrameViewModel.swift in Sources */,
+				9C7069B0868778C33846307A /* TransportOperatorViewModel.swift in Sources */,
+				9C70699F28BF8CDA5057E8EB /* PeriodFareViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

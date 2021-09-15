@@ -225,8 +225,8 @@ struct Stop: Decodable, DynamicNodeDecoding {
 }
 
 struct Tariff: Decodable, DynamicNodeDecoding {
-    let name: String?
     let id: String?
+    let name: String?
     //Helper variables for nested decoding
     private let validityConditions: Validity?
     private let timeIntervals: TimeIntervals?
@@ -236,6 +236,28 @@ struct Tariff: Decodable, DynamicNodeDecoding {
         case timeIntervals
         case id
         case validityConditions
+    }
+
+    func getProductTags() -> [String]? {
+        guard let periods: [TicketTimePeriod] = self.timeIntervals?.ticketTimePeriod else {
+            return nil
+        }
+        return periods.map(\.id)
+                .map { str -> [String] in
+                    guard let str = str else {
+                        return []
+                    }
+                    var tags = str.split(separator: "@", maxSplits: 2)
+                    if tags.count > 1 {
+                        tags.removeFirst()
+                    }
+                    return tags.map {
+                        $0.replacingOccurrences(of: "_", with: " ")
+                    }
+                }
+                .flatMap {
+                    $0
+                }
     }
 
     // Helper structs to extract nested objects
@@ -313,6 +335,7 @@ extension Valid {
     }
 }
 
+// MARK: - Extensions
 extension Stop: Equatable {
     static func ==(lhs: Stop, rhs: Stop) -> Bool {
         // if any are optional exit out
@@ -334,5 +357,28 @@ extension TicketTimePeriod: DynamicNodeDecoding {
         default:
             return .element
         }
+    }
+}
+
+extension TransportOperator: Equatable {
+    public static func ==(lhs: TransportOperator, rhs: TransportOperator) -> Bool {
+        let coreEquatable =
+                lhs.nocCode == rhs.nocCode &&
+                        lhs.name == rhs.name &&
+                        lhs.street == rhs.street &&
+                        lhs.phone == rhs.phone &&
+                        lhs.website == rhs.website &&
+                        lhs.email == rhs.email
+        //optional naming details for operator exist
+        if let lShort = lhs.shortName,
+           let rShort = rhs.shortName,
+           let lTrading = lhs.tradingName,
+           let rTrading = rhs.tradingName {
+            return
+                    rTrading == lTrading
+                            && rShort == lShort
+                            && coreEquatable
+        }
+        return coreEquatable
     }
 }

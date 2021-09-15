@@ -8,8 +8,7 @@ import Foundation
 struct Product: Identifiable {
     var id,
             productName,
-            productPrice,
-            productDuration: String?
+            productPrice: String?
     var productValidity: Valid?
 }
 
@@ -44,7 +43,6 @@ extension Product: Equatable {
         }
         return lhs.productName == rhs.productName &&
                 lhValidity.fromDate == rhValidity.fromDate &&
-                lhValidity.toDate == rhValidity.toDate &&
-                lhs.productDuration == rhs.productDuration
+                lhValidity.toDate == rhValidity.toDate
     }
 }

@@ -11,12 +11,17 @@ import Foundation
  */
 class PriceViewModel: ObservableObject {
     @Published var prices: [String] = [String]()
+    // Model with listed prices
+    private var fareTable: FareTables
 
-    init() {
-        updatePrices()
+    init(fareTable: FareTables) {
+        self.fareTable = fareTable
+        prices = updatePrices(fareTable: fareTable)
     }
 
-    func updatePrices() {
-        //extractPrices from a Fare
+    func updatePrices(fareTable: FareTables? = nil) -> [String] {
+        //extractPrices from a FareTable
+
+        return [String]()
     }
 }

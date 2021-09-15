@@ -8,8 +8,8 @@
 import Foundation
 @testable import PocDFT
 
-func loadXMLData() -> Data? {
-    if let fileURL = Bundle.main.url(forResource: "data/periodGeoZone", withExtension: "xml") {
+func loadXMLData(url: String? = "data/periodGeoZone") -> Data? {
+    if let fileURL = Bundle.main.url(forResource: url, withExtension: "xml") {
         do {
             let contents = try String(contentsOf: fileURL)
             return contents.data(using: .utf8)
@@ -218,5 +218,31 @@ struct MockPrices {
         id = newIdValue
         amount = newAmountValue
         ref = newRefValue
+    }
+}
+
+// MARK: Given a mockOrganization and I have extract the compositeFrames
+let mockOrganization: [String: String] =
+        [
+            "publicCode": "BLAC",
+            "name": "Blackpool Transport",
+            "shortName": "Blackpool Transport",
+            "tradingName": "Blackpool Transport Services Ltd",
+            "phone": "01253 473001",
+            "url": "http://www.blackpooltransport.com",
+            "address": "Rigby Road, Blackpool FY1 5DD",
+            "email": "enquiries@blackpooltransport.com"
+        ]
+
+import XCTest
+
+extension PocDFTViewModelTests {
+    /**Helper function to XCTActivity within the PocDFTViewModelTests
+    runTest will be embedded into a standard XCTest function so it is required to rethrow
+    for the parent function to capture any nested fatales */
+    func runTest<T>(_ description: String, subBlock: () throws -> T) rethrows -> T {
+        // Use try as a normal runActivity throws
+        // and use try in the closure as the subBlock could throw
+        try XCTContext.runActivity(named: description, block: { _ in try subBlock() })
     }
 }

@@ -16,8 +16,8 @@ struct FareTables: Decodable {
 
 // MARK: FareTables containing name and references to Products
 struct FareTable: Decodable, DynamicNodeDecoding {
-    let name: String?
-    let id: String?
+    let id: String? // id like  "op:fareTable@Product_1@Onboard_(contactless)@zone"
+    let name: String? // name like "Product 1 - Onboard (contactless) - Test Town Centre"
     //let priceRef: String? //pricesFor/PreassignedFareProductRef.ref
     private let includes: Includes?
 
@@ -119,23 +119,11 @@ fileprivate struct FinalIncludes: Decodable {
 
 // MARK: - Prices
 struct Prices: Decodable {
-    private let timeIntervalPrice: TimeIntervalPrice? = nil
-    private(set) var priceId: String = ""
-    private(set) var priceAmount: String = ""
-    private(set) var priceRef: String = ""
-
-    init(id newIdValue: String, ref newRefValue: String, amount newAmountValue: String) {
-        priceId = newIdValue
-        priceAmount = newAmountValue
-        priceRef = newRefValue
-    }
+    private let timeIntervalPrice: TimeIntervalPrice?
 
     var amount: String? {
         get {
             timeIntervalPrice?.amount
-        }
-        set {
-            priceAmount = newValue ?? ""
         }
     }
 
@@ -143,17 +131,11 @@ struct Prices: Decodable {
         get {
             timeIntervalPrice?.id
         }
-        set {
-            priceId = newValue ?? ""
-        }
     }
 
     var ref: String? {
         get {
             timeIntervalPrice?.ref
-        }
-        set {
-            priceRef = newValue ?? ""
         }
     }
 
@@ -196,7 +178,13 @@ struct Prices: Decodable {
 }
 
 extension FareTable {
-    func extractFare(splitDescriptionWith character: String.Element? = "-") -> Fare? {
+    enum FareTableDataKeys: Int {
+        case Product = 0
+        case PaymentMethod = 1
+        case PassengerOrZone = 2
+    }
+
+    func extractFare(splitDescriptionWith character: String? = " - ") -> Fare? {
         var newFare = Fare()
         guard let id = self.id,
               let name = self.name,
@@ -210,14 +198,19 @@ extension FareTable {
         newFare.name = name
 
         if let separator = character {
-            var strings = name.split(separator: separator)
-            newFare.zoneDescription = name
+            let zoneStrings = name.components(separatedBy: separator)
+            newFare.zoneDescription = extractFareData(from: zoneStrings, for: .PassengerOrZone)
+            // name like: Product 1 - Onboard (cash)  - adult
+            if let iftName = includes?.fareTable?.name {
+                let passenger = iftName.components(separatedBy: separator)
+                newFare.passengerDescription = extractFareData(from: passenger, for: .PassengerOrZone)
+            }
         }
+        /** Unused but captured from XML
+        // id like: op:Product_1@Onboard_(cash)@adult@product-0@SOP-0@zone
+        let fTIncludesFTId = includes?.fareTable?.id
+        */
 
-//        // id like: op:Product_1@Onboard_(cash)@adult@product-0@SOP-0@zone
-//        let fTIncludesFTId = includes?.fareTable?.id
-//        // name like: Product 1 - Onboard (cash)  - adult
-        newFare.passengerDescription = includes?.fareTable?.name
         // specifics ref like: op:BLAC_products@Test_Town_Centre
         newFare.ref = ref
         // results as FarePrice
@@ -227,5 +220,13 @@ extension FareTable {
         //Price.id like: op:Tariff@Product_1@1-day
         newFare.price = farePrice
         return newFare
+    }
+
+    ///"product", "Payment type" , "Zone"/"Passenger"
+    private func extractFareData(from data: [String], for key: FareTableDataKeys = .PassengerOrZone) -> String {
+        if key.rawValue < data.count {
+            return data[key.rawValue]
+        }
+        return ""
     }
 }
